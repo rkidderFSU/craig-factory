@@ -11,10 +11,12 @@ public class CurrencyManager : MonoBehaviour
     public TextMeshProUGUI currentCraigsText;
     public TextMeshProUGUI craigsPerSecondText;
 
+    CraigSpawner spawner;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        spawner = GameObject.Find("Craig Spawner").GetComponent<CraigSpawner>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class CurrencyManager : MonoBehaviour
         if (craigsPerSecond > 0)
         {
             ProduceCraigOverTime();
+            spawner.RunSpawner();
         }
     }
 
@@ -40,13 +43,16 @@ public class CurrencyManager : MonoBehaviour
     void ProduceCraigOverTime()
     {
         currentCraigsInternal += craigsPerSecond * Time.deltaTime; // Generates Craigs every frame based on your CpS amount
-        currentCraigs = Mathf.FloorToInt(currentCraigsInternal); // Rounds Craig to the nearest integer
+        currentCraigs = Mathf.FloorToInt(currentCraigsInternal); // Rounds Craig down to the nearest integer
     }
 
     public void ProduceCraigInstant()
     {
         currentCraigsInternal += craigsPerClick;
         currentCraigs = Mathf.FloorToInt(currentCraigsInternal);
-        // Spawn a Craig on the Craigveyor Belt with a cooldown (purely for flavor)
+        if (craigsPerSecond == 0)
+        {
+            spawner.RunSpawner();
+        }
     }
 }
