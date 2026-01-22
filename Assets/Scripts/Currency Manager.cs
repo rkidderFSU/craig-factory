@@ -4,7 +4,7 @@ using TMPro;
 public class CurrencyManager : MonoBehaviour
 {
     public int currentCraigs;
-    float currentCraigsInternal;
+    public float currentCraigsInternal;
     public float craigsPerSecond;
     public float craigsPerClick;
 
