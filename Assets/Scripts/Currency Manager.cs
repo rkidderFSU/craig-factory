@@ -36,9 +36,21 @@ public class CurrencyManager : MonoBehaviour
 
     string FormatValue(float value)
     {
-        if (value < 1000000f)
+        if (value < 1000f)
         {
             return Mathf.FloorToInt(value).ToString();
+        }
+        else if (value < 10000f)
+        {
+            return Mathf.FloorToInt(value).ToString("0,000");
+        }
+        else if (value < 100000f)
+        {
+            return Mathf.FloorToInt(value).ToString("00,000");
+        }
+        else if (value < 1000000f)
+        {
+            return Mathf.FloorToInt(value).ToString("000,000");
         }
         else
         {

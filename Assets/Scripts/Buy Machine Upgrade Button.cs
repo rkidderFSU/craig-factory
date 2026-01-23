@@ -2,28 +2,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class BuyMachineButton : MonoBehaviour
+public class BuyMachineUpgradeButton : MonoBehaviour
 {
-    public CPSMachineManager machine; // Grab the GameObject from the scene
+    [Tooltip("The upgrade manager this button ties to.")]
+    public CPSMachineUpgradeManager upgrade; // Grab the GameObject from the scene
     Button button;
     public TextMeshProUGUI buyText;
-    public TextMeshProUGUI ownedText;
     public TextMeshProUGUI costText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(machine.BuyMachine);
+        button.onClick.AddListener(upgrade.BuyUpgrade);
     }
 
     // Update is called once per frame
     void Update()
     {
-        button.interactable = machine.canAfford;
-        buyText.text = "Buy " + machine.machineName;
-        ownedText.text = "Owned: " + FormatValue(machine.machinesOwned);
-        costText.text = "Cost: " + FormatValue(machine.currentCost) + " Craigs";
+        button.interactable = upgrade.canAfford;
+        buyText.text = "Upgrade " + upgrade.machine.machineName;
+        costText.text = "Cost: " + FormatValue(upgrade.currentCost) + " Craigs";
     }
 
     string FormatValue(float value)
