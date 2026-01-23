@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1940003653651531009}
   - component: {fileID: 1245173586337776691}
   m_Layer: 0
-  m_Name: Test CPS Machine Controller
+  m_Name: CPS Machine Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a25c61e6da3da54f899a0c51776b3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  c: {fileID: 0}
-  machineName: Test Machine
+  machineName: 
   machinesOwned: 0
-  cpsPerMachine: 1
-  baseCost: 10
-  costMultiplier: 1.1
+  craigsPerSecondPerMachine: 0
+  baseCost: 0
+  costMultiplierPerMachine: 0
+  currentCost: 0
+  canAfford: 0

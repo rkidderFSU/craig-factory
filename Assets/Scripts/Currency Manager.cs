@@ -3,8 +3,8 @@ using TMPro;
 
 public class CurrencyManager : MonoBehaviour
 {
-    public int currentCraigs;
-    public float currentCraigsInternal;
+    public int currentCraigs; // This is the rounded value that is displayed on screen
+    public float currentCraigsInternal; // This is the real value and is used in all of the math
     public float craigsPerSecond;
     public float craigsPerClick;
 
@@ -34,10 +34,22 @@ public class CurrencyManager : MonoBehaviour
         UpdateText();
     }
 
+    string FormatValue(float value)
+    {
+        if (value < 1000000f)
+        {
+            return Mathf.FloorToInt(value).ToString();
+        }
+        else
+        {
+            return value.ToString("0.00e0");
+        }
+    }
+
     void UpdateText()
     {
-        currentCraigsText.text = "Current Craigs: " + currentCraigs;
-        craigsPerSecondText.text = "Craigs per Second: " + craigsPerSecond;
+        currentCraigsText.text = "Current Craigs: " + FormatValue(currentCraigsInternal);
+        craigsPerSecondText.text = "Craigs per Second: " + FormatValue(craigsPerSecond);
     }
 
     void ProduceCraigOverTime()

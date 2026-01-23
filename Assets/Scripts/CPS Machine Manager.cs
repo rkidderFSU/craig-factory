@@ -7,18 +7,19 @@ public class CPSMachineManager : MonoBehaviour
     [Header("Identity")]
     public string machineName;
 
-    [Header("State")]
-    public int machinesOwned = 0;
+    [HideInInspector] public int machinesOwned = 0;
 
     [Header("Production")]
     public int craigsPerSecondPerMachine = 1;
 
     [Header("Cost")]
-    public float baseCost = 10f;
-    public float costMultiplier = 1.1f;
+    [Tooltip("The cost of this machine the first time you buy it.")]
+    public float baseCost;
+    [Tooltip("The cost of the next machine will be multiplied by this amount.")]
+    public float costMultiplierPerMachine;
 
-    public float currentCost;
-    public bool canAfford;
+    [HideInInspector] public float currentCost;
+    [HideInInspector] public bool canAfford;
 
 
     private void Start()
@@ -39,7 +40,7 @@ public class CPSMachineManager : MonoBehaviour
             c.currentCraigsInternal -= currentCost;
             machinesOwned++;
             c.craigsPerSecond += craigsPerSecondPerMachine;
-            currentCost = Mathf.FloorToInt(baseCost * Mathf.Pow(costMultiplier, machinesOwned));
+            currentCost = Mathf.FloorToInt(baseCost * Mathf.Pow(costMultiplierPerMachine, machinesOwned));
         }
         else
         {
