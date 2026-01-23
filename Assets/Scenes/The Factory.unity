@@ -356,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: costMultiplierPerUpgrade
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4676966527959024765, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1371,7 +1371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1245173586337776691, guid: b2084c6a04ef2ce4592bcaa674281f92, type: 3}
       propertyPath: costMultiplierPerMachine
-      value: 1.08
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 1245173586337776691, guid: b2084c6a04ef2ce4592bcaa674281f92, type: 3}
       propertyPath: craigsPerSecondPerMachine
@@ -1599,7 +1599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: costMultiplierPerUpgrade
-      value: 5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4676966527959024765, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2380,7 +2380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1245173586337776691, guid: b2084c6a04ef2ce4592bcaa674281f92, type: 3}
       propertyPath: costMultiplierPerMachine
-      value: 1.11
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1245173586337776691, guid: b2084c6a04ef2ce4592bcaa674281f92, type: 3}
       propertyPath: craigsPerSecondPerMachine
@@ -2496,6 +2496,10 @@ PrefabInstance:
     - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: costMultiplierPerUpgrade
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
+      propertyPath: craigMultiplierPerUpgrade
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4676966527959024765, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: m_LocalPosition.x
