@@ -1,12 +1,12 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class CurrencyManager : MonoBehaviour
 {
-    public int currentCraigs; // This is the rounded value that is displayed on screen
-    public float currentCraigsInternal; // This is the real value and is used in all of the math
-    public float craigsPerSecond;
-    public float craigsPerClick;
+    public double currentCraigs;
+    public double craigsPerSecond;
+    public double craigsPerClick;
 
     public TextMeshProUGUI currentCraigsText;
     public TextMeshProUGUI craigsPerSecondText;
@@ -34,23 +34,24 @@ public class CurrencyManager : MonoBehaviour
         UpdateText();
     }
 
-    string FormatValue(float value)
+    string FormatValue(double value)
     {
+        // Rounds to nearest integer when below one million, otherwise format in scientific notation to 2 decimal places
         if (value < 1000f)
         {
-            return Mathf.FloorToInt(value).ToString();
+            return Math.Floor(value).ToString();
         }
         else if (value < 10000f)
         {
-            return Mathf.FloorToInt(value).ToString("0,000");
+            return Math.Floor(value).ToString("0,000");
         }
         else if (value < 100000f)
         {
-            return Mathf.FloorToInt(value).ToString("00,000");
+            return Math.Floor(value).ToString("00,000");
         }
         else if (value < 1000000f)
         {
-            return Mathf.FloorToInt(value).ToString("000,000");
+            return Math.Floor(value).ToString("000,000");
         }
         else
         {
@@ -60,20 +61,18 @@ public class CurrencyManager : MonoBehaviour
 
     void UpdateText()
     {
-        currentCraigsText.text = "Current Craigs: " + FormatValue(currentCraigsInternal);
+        currentCraigsText.text = "Current Craigs: " + FormatValue(currentCraigs);
         craigsPerSecondText.text = "Craigs per Second: " + FormatValue(craigsPerSecond);
     }
 
     void ProduceCraigOverTime()
     {
-        currentCraigsInternal += craigsPerSecond * Time.deltaTime; // Generates Craigs every frame based on your CpS amount
-        currentCraigs = Mathf.FloorToInt(currentCraigsInternal); // Rounds Craig down to the nearest integer
+        currentCraigs += craigsPerSecond * Time.deltaTime; // Generates Craigs every frame based on your CpS amount
     }
 
     public void ProduceCraigInstant()
     {
-        currentCraigsInternal += craigsPerClick;
-        currentCraigs = Mathf.FloorToInt(currentCraigsInternal);
+        currentCraigs += craigsPerClick;
         if (craigsPerSecond == 0)
         {
             spawner.RunSpawner();

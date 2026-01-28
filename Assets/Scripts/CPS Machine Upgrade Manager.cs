@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CPSMachineUpgradeManager : MonoBehaviour
 {
@@ -7,20 +8,20 @@ public class CPSMachineUpgradeManager : MonoBehaviour
     public CPSMachineManager machine;
 
     [Header("Identity")]
-    public string upgradeName;
+    public string[] upgradeNames;
 
-    [HideInInspector] public int upgradesOwned = 0;
+    [HideInInspector] public double upgradesOwned = 0;
 
     [Header("Production")]
-    public int craigMultiplierPerUpgrade = 2;
+    public double craigMultiplierPerUpgrade = 2;
 
     [Header("Cost")]
     [Tooltip("The cost of this upgrade the first time you buy it.")]
-    public float baseCost;
+    public double baseCost;
     [Tooltip("The cost of the next upgrade will be multiplied by this amount.")]
-    public float costMultiplierPerUpgrade = 10f;
+    public double costMultiplierPerUpgrade;
 
-    [HideInInspector] public float currentCost;
+    [HideInInspector] public double currentCost;
     [HideInInspector] public bool canAfford;
 
 
@@ -32,22 +33,29 @@ public class CPSMachineUpgradeManager : MonoBehaviour
 
     private void Update()
     {
-        canAfford = c.currentCraigsInternal >= currentCost;
+        canAfford = c.currentCraigs >= currentCost;
     }
 
     public void BuyUpgrade()
     {
         if (canAfford)
         {
-            c.currentCraigsInternal -= currentCost;
+            c.currentCraigs -= currentCost;
             upgradesOwned++;
             c.craigsPerSecond += machine.craigsPerSecondPerMachine * machine.machinesOwned; // Retroactive increase to CpS
             machine.craigsPerSecondPerMachine *= craigMultiplierPerUpgrade; // New machines will be more powerful
-            currentCost = Mathf.FloorToInt(baseCost * Mathf.Pow(costMultiplierPerUpgrade, upgradesOwned));
+            currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerUpgrade, upgradesOwned));
+            // CycleUpgradeName();
         }
         else
         {
             return;
         }
+    }
+
+    void CycleUpgradeName()
+    {
+        // have a list of upgrade names (done)
+        // remove the first entry
     }
 }

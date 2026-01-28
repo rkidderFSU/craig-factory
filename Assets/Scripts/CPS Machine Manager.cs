@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CPSMachineManager : MonoBehaviour
 {
@@ -10,15 +11,15 @@ public class CPSMachineManager : MonoBehaviour
     [HideInInspector] public int machinesOwned = 0;
 
     [Header("Production")]
-    public int craigsPerSecondPerMachine = 1;
+    public double craigsPerSecondPerMachine = 1;
 
     [Header("Cost")]
     [Tooltip("The cost of this machine the first time you buy it.")]
-    public float baseCost;
+    public double baseCost;
     [Tooltip("The cost of the next machine will be multiplied by this amount.")]
     public float costMultiplierPerMachine;
 
-    [HideInInspector] public float currentCost;
+    [HideInInspector] public double currentCost;
     [HideInInspector] public bool canAfford;
 
 
@@ -30,17 +31,17 @@ public class CPSMachineManager : MonoBehaviour
 
     private void Update()
     {
-        canAfford = c.currentCraigsInternal >= currentCost;
+        canAfford = c.currentCraigs >= currentCost;
     }
 
     public void BuyMachine()
     {
         if (canAfford)
         {
-            c.currentCraigsInternal -= currentCost;
+            c.currentCraigs -= currentCost;
             machinesOwned++;
             c.craigsPerSecond += craigsPerSecondPerMachine;
-            currentCost = Mathf.FloorToInt(baseCost * Mathf.Pow(costMultiplierPerMachine, machinesOwned));
+            currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerMachine, machinesOwned));
         }
         else
         {

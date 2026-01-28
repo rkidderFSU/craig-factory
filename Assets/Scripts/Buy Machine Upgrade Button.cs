@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class BuyMachineUpgradeButton : MonoBehaviour
 {
@@ -21,27 +22,28 @@ public class BuyMachineUpgradeButton : MonoBehaviour
     void Update()
     {
         button.interactable = upgrade.canAfford;
-        buyText.text = "Upgrade " + upgrade.machine.machineName;
+        buyText.text = "Upgrade " + upgrade.machine.machineName; // Later set this to "Buy " + upgrade.upgradeNames[0]
         costText.text = "Cost: " + FormatValue(upgrade.currentCost) + " Craigs";
     }
 
-    string FormatValue(float value)
+    string FormatValue(double value)
     {
+        // Rounds to nearest integer when below one million, otherwise format in scientific notation to 2 decimal places
         if (value < 1000f)
         {
-            return Mathf.FloorToInt(value).ToString();
+            return Math.Floor(value).ToString();
         }
         else if (value < 10000f)
         {
-            return Mathf.FloorToInt(value).ToString("0,000");
+            return Math.Floor(value).ToString("0,000");
         }
         else if (value < 100000f)
         {
-            return Mathf.FloorToInt(value).ToString("00,000");
+            return Math.Floor(value).ToString("00,000");
         }
         else if (value < 1000000f)
         {
-            return Mathf.FloorToInt(value).ToString("000,000");
+            return Math.Floor(value).ToString("000,000");
         }
         else
         {
