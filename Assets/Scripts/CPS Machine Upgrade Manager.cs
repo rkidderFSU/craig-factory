@@ -42,7 +42,7 @@ public class CPSMachineUpgradeManager : MonoBehaviour
         {
             c.currentCraigs -= currentCost;
             upgradesOwned++;
-            c.craigsPerSecond += machine.craigsPerSecondPerMachine * machine.machinesOwned; // Retroactive increase to CpS
+            c.craigsPerSecond += machine.craigsPerSecondPerMachine * machine.machinesOwned * (craigMultiplierPerUpgrade - 1); // Retroactive increase to CpS
             machine.craigsPerSecondPerMachine *= craigMultiplierPerUpgrade; // New machines will be more powerful
             currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerUpgrade, upgradesOwned));
             // CycleUpgradeName();

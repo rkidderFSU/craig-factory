@@ -2493,12 +2493,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 285359005}
     - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
+      propertyPath: baseCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: costMultiplierPerUpgrade
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3629849187061030561, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: craigMultiplierPerUpgrade
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4676966527959024765, guid: 8e30f960d1ee12c4680cfb0982ff3e18, type: 3}
       propertyPath: m_LocalPosition.x
