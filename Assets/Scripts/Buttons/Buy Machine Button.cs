@@ -6,6 +6,7 @@ using System;
 public class BuyMachineButton : MonoBehaviour
 {
     public CPSMachineManager machine; // Grab the GameObject from the scene
+    public GameObject infoDisplay;
     CurrencyManager c;
     Button button;
     public TextMeshProUGUI buyText;
@@ -27,5 +28,15 @@ public class BuyMachineButton : MonoBehaviour
         buyText.text = "Buy " + machine.machineName;
         ownedText.text = "Owned: " + c.FormatValue(machine.machinesOwned);
         costText.text = "Cost: " + c.FormatValue(machine.currentCost) + " Craigs";
+    }
+
+    private void OnMouseEnter()
+    {
+        infoDisplay.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        infoDisplay.SetActive(false);
     }
 }
