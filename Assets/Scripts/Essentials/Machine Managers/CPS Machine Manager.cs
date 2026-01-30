@@ -8,14 +8,18 @@ public class CPSMachineManager : MonoBehaviour
     [Header("Identity")]
     public string machineName;
 
-    [HideInInspector] public int machinesOwned = 0;
+    [HideInInspector] public double machinesOwned = 0;
 
     [Header("Production")]
+    public double baseCraigsPerSecondPerMachine = 1;
     public double craigsPerSecondPerMachine = 1;
 
     [Header("Cost")]
     [Tooltip("The cost of this machine the first time you buy it.")]
     public double baseCost;
+
+    /*[Tooltip("Cost multiplier will be reset to this value after a prestige.")] // Unused unless upgrades to cost multiplier are implemented
+    public double baseCostMultiplierPerMachine;*/
     [Tooltip("The cost of the next machine will be multiplied by this amount.")]
     public float costMultiplierPerMachine;
 
@@ -41,7 +45,12 @@ public class CPSMachineManager : MonoBehaviour
             c.currentCraigs -= currentCost;
             machinesOwned++;
             c.craigsPerSecond += craigsPerSecondPerMachine;
-            currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerMachine, machinesOwned));
+            RecalculateCost();
         }
+    }
+
+    public void RecalculateCost()
+    {
+        currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerMachine, machinesOwned));
     }
 }

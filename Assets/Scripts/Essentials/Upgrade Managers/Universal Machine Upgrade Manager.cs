@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class UniversalUpgradeZeroManager : MonoBehaviour
+public class UniversalMachineUpgradeManager : MonoBehaviour
 {
     CurrencyManager c;
     public CPSMachineManager[] machines;
@@ -17,6 +17,8 @@ public class UniversalUpgradeZeroManager : MonoBehaviour
     [Header("Cost")]
     [Tooltip("The cost of this upgrade the first time you buy it.")]
     public double baseCost;
+    /*[Tooltip("Cost multiplier will be reset to this value after a prestige.")] // Unused unless upgrades to cost multiplier are implemented
+    public double baseCostMultiplierPerUpgrade;*/
     [Tooltip("The cost of the next upgrade will be multiplied by this amount.")]
     public double costMultiplierPerUpgrade;
 
@@ -48,9 +50,14 @@ public class UniversalUpgradeZeroManager : MonoBehaviour
                 machine.craigsPerSecondPerMachine *= craigMultiplierPerUpgrade; // New machines will be more powerful
             }
 
-            currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerUpgrade, upgradesOwned));
+            RecalculateCost();
             // CycleUpgradeName();
         }
+    }
+
+    public void RecalculateCost()
+    {
+        currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerUpgrade, upgradesOwned));
     }
 
     void CycleUpgradeName()

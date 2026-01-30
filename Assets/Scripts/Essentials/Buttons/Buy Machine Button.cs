@@ -25,18 +25,25 @@ public class BuyMachineButton : MonoBehaviour
     void Update()
     {
         button.interactable = machine.canAfford;
-        buyText.text = "Buy " + machine.machineName;
-        ownedText.text = "Owned: " + c.FormatValue(machine.machinesOwned);
-        costText.text = "Cost: " + c.FormatValue(machine.currentCost) + " Craigs";
+        UpdateText();
     }
 
     private void OnMouseEnter()
     {
         infoDisplay.SetActive(true);
+        Debug.Log("Displaying Info");
     }
 
     private void OnMouseExit()
     {
         infoDisplay.SetActive(false);
+        Debug.Log("No longer displaying Info");
+    }
+
+    void UpdateText()
+    {
+        buyText.text = "Buy " + machine.machineName;
+        ownedText.text = "Owned: " + c.FormatValue(machine.machinesOwned);
+        costText.text = "Cost: " + c.FormatValue(machine.currentCost) + " Craigs";
     }
 }

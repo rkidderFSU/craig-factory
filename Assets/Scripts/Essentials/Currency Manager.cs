@@ -4,12 +4,17 @@ using System;
 
 public class CurrencyManager : MonoBehaviour
 {
+    [Tooltip("Currency")]
     public double currentCraigs;
     public double craigsPerSecond;
     public double craigsPerClick;
 
+    [Tooltip("Stats")]
     public double craigsThisRun;
     public double craigsAllTime;
+
+    [Tooltip("Prestige")]
+    public double prestigePoints;
 
     public TextMeshProUGUI currentCraigsText;
     public TextMeshProUGUI craigsPerSecondText;
@@ -73,15 +78,15 @@ public class CurrencyManager : MonoBehaviour
     {
         // Generates Craigs every frame based on your CpS amount
         currentCraigs += craigsPerSecond * Time.deltaTime;
-        //craigsThisRun += craigsPerSecond * Time.deltaTime;
-        //craigsAllTime += craigsPerSecond * Time.deltaTime;
+        craigsThisRun += craigsPerSecond * Time.deltaTime;
+        craigsAllTime += craigsPerSecond * Time.deltaTime;
     }
 
     public void ProduceCraigInstant()
     {
         currentCraigs += craigsPerClick;
-        //craigsThisRun += craigsPerClick;
-        //craigsAllTime += craigsPerClick;
+        craigsThisRun += craigsPerClick;
+        craigsAllTime += craigsPerClick;
         if (craigsPerSecond == 0)
         {
             spawner.RunSpawner();

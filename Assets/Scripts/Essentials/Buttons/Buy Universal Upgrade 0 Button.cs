@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class BuyMachineUpgradeButton : MonoBehaviour
+public class BuyUniversalUpgradeZeroButton : MonoBehaviour
 {
     [Tooltip("The upgrade manager this button ties to.")]
-    public CPSMachineUpgradeManager upgrade; // Grab the GameObject from the scene
+    public UniversalMachineUpgradeManager upgrade; // Grab the GameObject from the scene
     CurrencyManager c;
 
     Button button;
@@ -25,8 +25,8 @@ public class BuyMachineUpgradeButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        button.interactable = upgrade.canAfford && upgrade.machine.machinesOwned >= 1;
-        buyText.text = "Upgrade " + upgrade.machine.machineName; // Later set this to "Buy " + upgrade.upgradeNames[0]
+        button.interactable = upgrade.canAfford;
+        buyText.text = "Increase all Craig production by x" + upgrade.craigMultiplierPerUpgrade;
         costText.text = "Cost: " + c.FormatValue(upgrade.currentCost) + " Craigs";
     }
 }
