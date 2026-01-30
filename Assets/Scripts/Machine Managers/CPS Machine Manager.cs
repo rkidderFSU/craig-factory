@@ -43,9 +43,5 @@ public class CPSMachineManager : MonoBehaviour
             c.craigsPerSecond += craigsPerSecondPerMachine;
             currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerMachine, machinesOwned));
         }
-        else
-        {
-            return;
-        }
     }
 }

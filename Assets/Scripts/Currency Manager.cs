@@ -8,6 +8,9 @@ public class CurrencyManager : MonoBehaviour
     public double craigsPerSecond;
     public double craigsPerClick;
 
+    public double craigsThisRun;
+    public double craigsAllTime;
+
     public TextMeshProUGUI currentCraigsText;
     public TextMeshProUGUI craigsPerSecondText;
 
@@ -34,7 +37,7 @@ public class CurrencyManager : MonoBehaviour
         UpdateText();
     }
 
-    string FormatValue(double value)
+    public string FormatValue(double value)
     {
         // Rounds to nearest integer when below one million, otherwise format in scientific notation to 2 decimal places
         if (value < 1000f)
@@ -63,16 +66,22 @@ public class CurrencyManager : MonoBehaviour
     {
         currentCraigsText.text = "Current Craigs: " + FormatValue(currentCraigs);
         craigsPerSecondText.text = "Craigs per Second: " + FormatValue(craigsPerSecond);
+        // Update text for craigsThisRun and craigsAllTime once a stat menu exists
     }
 
     void ProduceCraigOverTime()
     {
-        currentCraigs += craigsPerSecond * Time.deltaTime; // Generates Craigs every frame based on your CpS amount
+        // Generates Craigs every frame based on your CpS amount
+        currentCraigs += craigsPerSecond * Time.deltaTime;
+        //craigsThisRun += craigsPerSecond * Time.deltaTime;
+        //craigsAllTime += craigsPerSecond * Time.deltaTime;
     }
 
     public void ProduceCraigInstant()
     {
         currentCraigs += craigsPerClick;
+        //craigsThisRun += craigsPerClick;
+        //craigsAllTime += craigsPerClick;
         if (craigsPerSecond == 0)
         {
             spawner.RunSpawner();

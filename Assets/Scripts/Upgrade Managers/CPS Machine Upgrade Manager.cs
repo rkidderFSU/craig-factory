@@ -47,10 +47,6 @@ public class CPSMachineUpgradeManager : MonoBehaviour
             currentCost = Math.Floor(baseCost * Math.Pow(costMultiplierPerUpgrade, upgradesOwned));
             // CycleUpgradeName();
         }
-        else
-        {
-            return;
-        }
     }
 
     void CycleUpgradeName()
